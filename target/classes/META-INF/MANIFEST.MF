@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: crm_2.0
+Implementation-Version: 1.0.0
+Built-By: 1
+Implementation-Vendor-Id: com.benxc.springboot
+Build-Jdk: 1.8.0_261
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/crm_2.0
+Created-By: Maven Integration for Eclipse
+

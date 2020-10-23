@@ -9,20 +9,20 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
-	<title>Save Employee</title>
+	<title>Save Customer</title>
 </head>
 
 <body>
 
 	<div class="container">
 	
-		<h3>Employee Directory</h3>
+		<h3>Customer Directory</h3>
 		<hr>
 		
-		<p class="h4 mb-4">Save Employee</p>
+		<p class="h4 mb-4">Save Customer</p>
 	
-		<form th:action="@{/employees/save}"
-			  th:object="${employee}" method="POST">
+		<form th:action="@{/customers/save}"
+			  th:object="${customer}" method="POST">
 		
 			<!-- Add hidden form field to handle update -->
 			<input type="hidden" th:field="*{id}" />
@@ -41,7 +41,7 @@
 		</form>
 	
 		<hr>
-		<a th:href="@{/employees/list}">Back to Employees List</a>
+		<a th:href="@{/customers/list}">Back to Customers List</a>
 		
 	</div>
 </body>

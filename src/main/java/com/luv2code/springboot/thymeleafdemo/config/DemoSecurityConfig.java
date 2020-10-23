@@ -19,12 +19,12 @@ import com.luv2code.springboot.thymeleafdemo.service.UserService;
 @EnableWebSecurity
 public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
 
-//	// beg: reg
-//	// add a reference to our user service
-//	@Autowired
-//	private UserService userService;
-//	// end: reg
-//	
+	// beg: reg
+	// add a reference to our user service
+	@Autowired
+	private UserService userService;
+	// end: reg
+	
 	// add a reference to our security data source
 	
 	@Autowired
@@ -60,23 +60,23 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 	}
 	
-//	//beg: reg
-//	//beans
-//	//bcrypt bean definition
-//	@Bean
-//	public BCryptPasswordEncoder passwordEncoder() {
-//		return new BCryptPasswordEncoder();
-//	}
-//
-//	//authenticationProvider bean definition
-//	@Bean
-//	public DaoAuthenticationProvider authenticationProvider() {
-//		DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
-//		auth.setUserDetailsService(userService); //set the custom user details service
-//		auth.setPasswordEncoder(passwordEncoder()); //set the password encoder - bcrypt
-//		return auth;
-//	}
-//	//end: reg	
+	//beg: reg
+	//beans
+	//bcrypt bean definition
+	@Bean
+	public BCryptPasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+
+	//authenticationProvider bean definition
+	@Bean
+	public DaoAuthenticationProvider authenticationProvider() {
+		DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
+		auth.setUserDetailsService(userService); //set the custom user details service
+		auth.setPasswordEncoder(passwordEncoder()); //set the password encoder - bcrypt
+		return auth;
+	}
+	//end: reg	
 }
 
 

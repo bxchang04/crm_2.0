@@ -22,7 +22,7 @@ public class UserDaoImpl implements UserDao {
 		Session currentSession = entityManager.unwrap(Session.class);
 
 		// now retrieve/read from database using username
-		Query<User> theQuery = currentSession.createQuery("from User where userName=:uName", User.class);
+		Query<User> theQuery = currentSession.createQuery("from Users where userName=:uName", User.class);
 		theQuery.setParameter("uName", theUserName);
 		User theUser = null;
 		try {
@@ -39,7 +39,7 @@ public class UserDaoImpl implements UserDao {
 		// get current hibernate session
 		Session currentSession = entityManager.unwrap(Session.class);
 
-		// create the user ... finally LOL
+		// create the user
 		currentSession.saveOrUpdate(theUser);
 	}
 

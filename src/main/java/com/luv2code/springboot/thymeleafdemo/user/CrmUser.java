@@ -23,6 +23,8 @@ public class CrmUser {
 	@Size(min = 1, message = "is required")
 	private String matchingPassword;
 
+	private Integer enabled;
+	
 	@NotNull(message = "is required")
 	@Size(min = 1, message = "is required")
 	private String firstName;
@@ -37,7 +39,7 @@ public class CrmUser {
 	private String email;
 
 	public CrmUser() {
-
+		this.enabled = 1;
 	}
 
 	public String getUserName() {
@@ -64,6 +66,10 @@ public class CrmUser {
 		this.matchingPassword = matchingPassword;
 	}
 
+	public Integer getEnabled() {
+		return enabled;
+	}
+	
 	public String getFirstName() {
 		return firstName;
 	}

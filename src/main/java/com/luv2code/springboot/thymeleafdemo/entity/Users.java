@@ -5,7 +5,7 @@ import java.util.Collection;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class Users {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +17,9 @@ public class User {
 
 	@Column(name = "password")
 	private String password;
+	
+	@Column(name = "enabled")
+	private Integer enabled;
 
 	@Column(name = "first_name")
 	private String firstName;
@@ -33,21 +36,23 @@ public class User {
 	inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Collection<Role> roles;
 
-	public User() {
+	public Users() {
 	}
 
-	public User(String userName, String password, String firstName, String lastName, String email) {
+	public Users(String userName, String password, Integer enabled, String firstName, String lastName, String email) {
 		this.userName = userName;
 		this.password = password;
+		this.enabled = enabled;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 	}
 
-	public User(String userName, String password, String firstName, String lastName, String email,
+	public Users(String userName, String password, Integer enabled, String firstName, String lastName, String email,
 			Collection<Role> roles) {
 		this.userName = userName;
 		this.password = password;
+		this.enabled = enabled;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -76,6 +81,14 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public Integer getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Integer enabled) {
+		this.enabled = enabled;
 	}
 
 	public String getFirstName() {

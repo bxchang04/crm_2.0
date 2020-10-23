@@ -8,7 +8,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.luv2code.springboot.thymeleafdemo.entity.User;
+import com.luv2code.springboot.thymeleafdemo.entity.Users;
 
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -17,14 +17,14 @@ public class UserDaoImpl implements UserDao {
 	private EntityManager entityManager;
 
 	@Override
-	public User findByUserName(String theUserName) {
+	public Users findByUserName(String theUserName) {
 		// get the current hibernate session
 		Session currentSession = entityManager.unwrap(Session.class);
 
 		// now retrieve/read from database using username
-		Query<User> theQuery = currentSession.createQuery("from Users where userName=:uName", User.class);
+		Query<Users> theQuery = currentSession.createQuery("from Users where userName=:uName", Users.class);
 		theQuery.setParameter("uName", theUserName);
-		User theUser = null;
+		Users theUser = null;
 		try {
 			theUser = theQuery.getSingleResult();
 		} catch (Exception e) {
@@ -35,7 +35,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void save(User theUser) {
+	public void save(Users theUser) {
 		// get current hibernate session
 		Session currentSession = entityManager.unwrap(Session.class);
 

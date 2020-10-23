@@ -3,7 +3,7 @@ package com.luv2code.springboot.thymeleafdemo.service;
 import com.luv2code.springboot.thymeleafdemo.dao.RoleDao;
 import com.luv2code.springboot.thymeleafdemo.dao.UserDao;
 import com.luv2code.springboot.thymeleafdemo.entity.Role;
-import com.luv2code.springboot.thymeleafdemo.entity.User;
+import com.luv2code.springboot.thymeleafdemo.entity.Users;
 import com.luv2code.springboot.thymeleafdemo.user.CrmUser;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public User findByUserName(String userName) {
+	public Users findByUserName(String userName) {
 		// check the database if the user already exists
 		return userDao.findByUserName(userName);
 	}
@@ -42,10 +42,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional
 	public void save(CrmUser crmUser) {
-		User user = new User();
+		Users user = new Users();
 		 // assign user details to the user object
 		user.setUserName(crmUser.getUserName());
 		user.setPassword(passwordEncoder.encode(crmUser.getPassword()));
+//		user.setEnabled(crmUser.getEnabled());
+		user.setEnabled(1);
 		user.setFirstName(crmUser.getFirstName());
 		user.setLastName(crmUser.getLastName());
 		user.setEmail(crmUser.getEmail());
@@ -60,7 +62,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-		User user = userDao.findByUserName(userName);
+		Users user = userDao.findByUserName(userName);
 		if (user == null) {
 			throw new UsernameNotFoundException("Invalid username or password.");
 		}

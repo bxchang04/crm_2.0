@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.luv2code.springboot.thymeleafdemo.entity.User;
+import com.luv2code.springboot.thymeleafdemo.entity.Users;
 import com.luv2code.springboot.thymeleafdemo.service.UserService;
 import com.luv2code.springboot.thymeleafdemo.user.CrmUser;
 
@@ -60,7 +60,7 @@ public class RegistrationController {
 	        }
 
 		// check the database if user already exists
-        User existing = userService.findByUserName(userName);
+        Users existing = userService.findByUserName(userName);
         if (existing != null){
         	theModel.addAttribute("crmUser", new CrmUser());
 			theModel.addAttribute("registrationError", "User name already exists.");

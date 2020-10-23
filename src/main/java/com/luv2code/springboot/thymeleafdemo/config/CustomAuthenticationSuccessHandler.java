@@ -12,7 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
-import com.luv2code.springboot.thymeleafdemo.entity.User;
+import com.luv2code.springboot.thymeleafdemo.entity.Users;
 import com.luv2code.springboot.thymeleafdemo.service.UserService;
 
 @Component
@@ -31,7 +31,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 		
 		System.out.println("userName=" + userName);
 
-		User theUser = userService.findByUserName(userName);
+		Users theUser = userService.findByUserName(userName);
 		
 		// now place in the session
 		HttpSession session = request.getSession();

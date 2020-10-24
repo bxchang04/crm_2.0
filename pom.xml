@@ -63,6 +63,12 @@
 		    <artifactId>mariadb-java-client</artifactId>
 		    <version>2.7.0</version>
 		</dependency>
+		<dependency>
+		   <groupId>org.postgresql</groupId>
+		   <artifactId>postgresql</artifactId>
+		   <version>9.4-1206-jdbc42</version>
+		   <scope>runtime</scope>
+		</dependency>
 	</dependencies>
 
 	<build>

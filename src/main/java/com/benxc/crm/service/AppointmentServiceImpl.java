@@ -12,21 +12,21 @@ import com.benxc.crm.entity.Appointment;
 @Service
 public class AppointmentServiceImpl implements AppointmentService {
 
-	private AppointmentRepository AppointmentRepository;
+	private AppointmentRepository appointmentRepository;
 	
 	@Autowired
 	public AppointmentServiceImpl(AppointmentRepository theAppointmentRepository) {
-		AppointmentRepository = theAppointmentRepository;
+		appointmentRepository = theAppointmentRepository;
 	}
 	
 	@Override
 	public List<Appointment> findAll() {
-		return AppointmentRepository.findAllByOrderByLastNameAsc();
+		return appointmentRepository.findAllByOrderByLastNameAsc();
 	}
 
 	@Override
 	public Appointment findById(int theId) {
-		Optional<Appointment> result = AppointmentRepository.findById(theId);
+		Optional<Appointment> result = appointmentRepository.findById(theId);
 		
 		Appointment theAppointment = null;
 		
@@ -34,8 +34,8 @@ public class AppointmentServiceImpl implements AppointmentService {
 			theAppointment = result.get();
 		}
 		else {
-			// we didn't find the Appointment
-			throw new RuntimeException("Did not find Appointment id - " + theId);
+			// we didn't find the appointment
+			throw new RuntimeException("Did not find appointment id - " + theId);
 		}
 		
 		return theAppointment;
@@ -43,12 +43,12 @@ public class AppointmentServiceImpl implements AppointmentService {
 
 	@Override
 	public void save(Appointment theAppointment) {
-		AppointmentRepository.save(theAppointment);
+		appointmentRepository.save(theAppointment);
 	}
 
 	@Override
 	public void deleteById(int theId) {
-		AppointmentRepository.deleteById(theId);
+		appointmentRepository.deleteById(theId);
 	}
 
 	@Override
@@ -57,7 +57,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 		List<Appointment> results = null;
 		
 		if (theName != null && (theName.trim().length() > 0)) {
-			results = AppointmentRepository.findByFirstNameContainsOrLastNameContainsAllIgnoreCase(theName, theName);
+			results = appointmentRepository.findByFirstNameContainsOrLastNameContainsAllIgnoreCase(theName, theName);
 		}
 		else {
 			results = findAll();

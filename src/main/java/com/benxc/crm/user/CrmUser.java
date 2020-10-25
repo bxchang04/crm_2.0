@@ -38,6 +38,7 @@ public class CrmUser {
 	@Size(min = 1, message = "is required")
 	private String email;
 
+
 	public CrmUser() {
 		this.enabled = 1;
 	}

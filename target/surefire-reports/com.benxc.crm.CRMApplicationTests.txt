@@ -1,0 +1,9 @@
+-------------------------------------------------------------------------------
+Test set: com.benxc.crm.CRMApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.007 s <<< FAILURE! - in com.benxc.crm.CRMApplicationTests
+initializationError  Time elapsed: 0.003 s  <<< ERROR!
+org.junit.runners.model.InvalidTestClassError: 
+Invalid test class 'com.benxc.crm.CRMApplicationTests':
+  1. No runnable methods
+

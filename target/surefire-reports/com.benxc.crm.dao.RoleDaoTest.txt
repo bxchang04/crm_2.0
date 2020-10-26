@@ -1,0 +1,9 @@
+-------------------------------------------------------------------------------
+Test set: com.benxc.crm.dao.RoleDaoTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0 s <<< FAILURE! - in com.benxc.crm.dao.RoleDaoTest
+initializationError  Time elapsed: 0 s  <<< ERROR!
+org.junit.runners.model.InvalidTestClassError: 
+Invalid test class 'com.benxc.crm.dao.RoleDaoTest':
+  1. No runnable methods
+

@@ -2,10 +2,12 @@ package com.benxc.crm;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.when;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -28,6 +30,8 @@ import com.benxc.crm.service.EmployeeService;
 
 @SpringBootTest
 public class CRMApplicationTests {
+
+	private static final String Answer = null;
 
 	@Autowired
 	private EmployeeService service;
@@ -56,13 +60,22 @@ public class CRMApplicationTests {
 		assertEquals(newEmp, repository.findById(100));
 	}
 	
-//	@Test
-//	public void DeleteEmployeeByIdTest() {
-//		Optional<Employee> newEmp = Optional.of(new Employee(100, "Hank", "Hill", "hhill@hh.com"));
-//		
-//		when(repository.deleteById(100).doNothing());
-//		assertEquals(true, repository.findById(100));
-//	}
+	@Test
+	public void SearchEmployeeByString() {
+		Employee newEmp = new Employee(100, "Hank", "Hill", "hhill@hh.com");
+		List<Employee> newEmpList = Arrays.asList(newEmp);
+		
+		//repository doesn't work here. Research this.
+		when(service.searchBy("Hank")).thenReturn(newEmpList);
+		assertEquals(newEmpList, service.searchBy("Hank"));
+	}
+	
+	@Test
+	public void DeleteEmployeeByIdTest() {
+		Optional<Employee> newEmp = Optional.empty();
+		doNothing().when(repository).deleteById(100);
+		assertEquals(newEmp, repository.findById(100));
+	}
 	
 	@Test
 	public void findCustomersTest() {
@@ -79,7 +92,22 @@ public class CRMApplicationTests {
 		assertEquals(newCust, crepository.findById(100));
 	}
 
+	@Test
+	public void DeleteCustomerByIdTest() {
+		Optional<Customer> newCust = Optional.empty();
+		doNothing().when(crepository).deleteById(100);
+		assertEquals(newCust, crepository.findById(100));
+	}
 
+	@Test
+	public void SearchCustomerByString() {
+		Customer newCust = new Customer(100, "Harry", "Hill", "hhill@hh.com");
+		List<Customer> newCustList = Arrays.asList(newCust);
+		
+		//repository doesn't work here. Research this.
+		when(cservice.searchBy("Harry")).thenReturn(newCustList);
+		assertEquals(newCustList, cservice.searchBy("Harry"));
+	}
 	
 }
 

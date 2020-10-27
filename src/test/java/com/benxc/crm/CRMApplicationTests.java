@@ -1,10 +1,15 @@
 package com.benxc.crm;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.empty;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
@@ -61,7 +66,7 @@ public class CRMApplicationTests {
 	}
 	
 	@Test
-	public void SearchEmployeeByString() {
+	public void searchEmployeeByString() {
 		Employee newEmp = new Employee(100, "Hank", "Hill", "hhill@hh.com");
 		List<Employee> newEmpList = Arrays.asList(newEmp);
 		
@@ -71,10 +76,17 @@ public class CRMApplicationTests {
 	}
 	
 	@Test
-	public void DeleteEmployeeByIdTest() {
+	public void deleteEmployeeByIdTest() {
 		Optional<Employee> newEmp = Optional.empty();
 		doNothing().when(repository).deleteById(100);
 		assertEquals(newEmp, repository.findById(100));
+	}
+	
+	@Test
+	public void saveEmployeeTest() {
+		Employee newEmp = new Employee(101, "Hank3", "Hill3", "hhill3@hh.com");
+		when(repository.save(newEmp)).thenReturn(newEmp);
+		assertEquals(newEmp,repository.save(newEmp));
 	}
 	
 	@Test
@@ -93,20 +105,27 @@ public class CRMApplicationTests {
 	}
 
 	@Test
-	public void DeleteCustomerByIdTest() {
+	public void deleteCustomerByIdTest() {
 		Optional<Customer> newCust = Optional.empty();
 		doNothing().when(crepository).deleteById(100);
 		assertEquals(newCust, crepository.findById(100));
 	}
 
 	@Test
-	public void SearchCustomerByString() {
+	public void searchCustomerByString() {
 		Customer newCust = new Customer(100, "Harry", "Hill", "hhill@hh.com");
 		List<Customer> newCustList = Arrays.asList(newCust);
 		
 		//repository doesn't work here. Research this.
 		when(cservice.searchBy("Harry")).thenReturn(newCustList);
 		assertEquals(newCustList, cservice.searchBy("Harry"));
+	}
+	
+	@Test
+	public void saveCustomerTest() {
+		Customer newCust = new Customer(101, "Harry3", "Hill3", "hhill3@hh.com");
+		when(crepository.save(newCust)).thenReturn(newCust);
+		assertEquals(newCust,crepository.save(newCust));
 	}
 	
 }
